@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Outfit", sans-serif;
+  --font-mono: "DM Mono", monospace;
+
+  --color-bg: #faf8f3;
+  --color-bg-card: #ffffff;
+  --color-bg-subtle: #f5f2eb;
+  --color-bg-elevated: #fffbf6;
+  --color-bg-dark-accent: #2d2520;
+  
+  --color-gold: #c19a6b;
+  --color-gold-dim: #8b7355;
+  --color-gold-light: #e8d5a8;
+  --color-gold-bright: #d4af37;
+  
+  --color-green: #2d5a3d;
+  --color-green-light: #d9e8dd;
+  --color-green-accent: #3d7a52;
+  
+  --color-blue: #1e3a5f;
+  --color-blue-light: #d4ddf0;
+  --color-blue-accent: #2c5aa0;
+  
+  --color-text-primary: #1a1612;
+  --color-text-secondary: #5a5350;
+  --color-text-faint: #a89f97;
+  --color-border-color: #e5e0d8;
+  
+  --color-success: #2d5a3d;
+
+  --shadow-sm: 0 4px 12px rgba(26,22,18,0.06);
+  --shadow-md: 0 8px 24px rgba(26,22,18,0.12);
+  --shadow-lg: 0 12px 48px rgba(26,22,18,0.18);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  cursor: none; /* Hide default cursor for custom cursor */
+}
+
+/* Fallback for touch devices or missing cursor implementation */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dim);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(color-mix(in srgb, var(--color-gold) 15%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -16px -16px;
+}
