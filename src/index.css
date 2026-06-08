@@ -1,79 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
+:root {
+  --bg-primary: #0e0e0e;
+  --bg-secondary: #161616;
+  --bg-elevated: #1f1f1f;
+  --accent-warm: #b8965a;
+  --accent-muted: #7a6a52;
+  --text-primary: #e8e4dc;
+  --text-secondary: #8a8478;
+  --border: #2a2a2a;
+}
+
 @theme {
-  --font-display: "Cormorant Garamond", serif;
-  --font-body: "Outfit", sans-serif;
-  --font-mono: "DM Mono", monospace;
-
-  --color-bg: #faf8f3;
-  --color-bg-card: #ffffff;
-  --color-bg-subtle: #f5f2eb;
-  --color-bg-elevated: #fffbf6;
-  --color-bg-dark-accent: #2d2520;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   
-  --color-gold: #c19a6b;
-  --color-gold-dim: #8b7355;
-  --color-gold-light: #e8d5a8;
-  --color-gold-bright: #d4af37;
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-accent-warm: var(--accent-warm);
+  --color-accent-muted: var(--accent-muted);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
   
-  --color-green: #2d5a3d;
-  --color-green-light: #d9e8dd;
-  --color-green-accent: #3d7a52;
+  /* Retain backward compatibility maps for frictionless rendering */
+  --color-luxury-black: var(--bg-primary);
+  --color-luxury-card: var(--bg-secondary);
+  --color-luxury-border: var(--border);
+  --color-luxury-accent: var(--text-primary);
+  --color-luxury-gold: var(--accent-warm);
   
-  --color-blue: #1e3a5f;
-  --color-blue-light: #d4ddf0;
-  --color-blue-accent: #2c5aa0;
-  
-  --color-text-primary: #1a1612;
-  --color-text-secondary: #5a5350;
-  --color-text-faint: #a89f97;
-  --color-border-color: #e5e0d8;
-  
-  --color-success: #2d5a3d;
-
-  --shadow-sm: 0 4px 12px rgba(26,22,18,0.06);
-  --shadow-md: 0 8px 24px rgba(26,22,18,0.12);
-  --shadow-lg: 0 12px 48px rgba(26,22,18,0.18);
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text-primary);
-  font-family: var(--font-body);
-  cursor: none; /* Hide default cursor for custom cursor */
-}
-
-/* Fallback for touch devices or missing cursor implementation */
-@media (hover: none) and (pointer: coarse) {
-  body {
-    cursor: auto;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  
+  /* Custom modern focus outlines */
+  *:focus-visible {
+    outline: 2px solid var(--accent-warm);
+    outline-offset: 4px;
+  }
+  
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Smooth Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-muted);
+  }
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+/* 1. Page Load Splitting Overlay Panels */
+.split-loader-panel {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 50.5vh;
+  background-color: #0c0c0c;
+  z-index: 9999;
+  transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1);
 }
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
+.loader-panel-top {
+  top: 0;
+  transform-origin: top;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--color-gold-dim);
-  border-radius: 4px;
+.loader-panel-bottom {
+  bottom: 0;
+  transform-origin: bottom;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold);
+.site-loaded .loader-panel-top {
+  transform: translateY(-100%);
+}
+.site-loaded .loader-panel-bottom {
+  transform: translateY(100%);
 }
 
-.text-balance {
-  text-wrap: balance;
+/* Letter Stagger Fade Effects */
+.letter-reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: revealLetter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes revealLetter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.bg-dot-pattern {
-  background-image: radial-gradient(color-mix(in srgb, var(--color-gold) 15%, transparent) 1px, transparent 1px);
-  background-size: 32px 32px;
-  background-position: -16px -16px;
+/* 2. Scroll Trigger Reveals Base Class */
+.scroll-reveal-element {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.scroll-reveal-element.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-child {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Triggered staggers */
+.reveal-active .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3. Section Draw line & Title masks */
+.draw-line-container {
+  width: 100%;
+  height: 1px;
+  background-color: transparent;
+  overflow: hidden;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.draw-line-decor {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent-warm), transparent);
+  transform: translateX(-100%);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.draw-line-active .draw-line-decor {
+  transform: translateX(100%);
+}
+
+.masked-reveal-box {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.masked-reveal-text {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-active .masked-reveal-text {
+  transform: translateY(0);
+}
+
+/* 4. Ken Burns custom effect */
+.ken-burns-container {
+  overflow: hidden;
+  position: relative;
+}
+.ken-burns-element {
+  transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .ken-burns-element {
+  transform: scale(1.08);
+}
+
+/* Shimmer Sweep Animation */
+.shimmer-trigger {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-trigger::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(184, 150, 90, 0.15) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+.shimmer-trigger:hover::after {
+  left: 150%;
+}
+
+/* 3D tilt adjustments */
+.tilt-card-wrapper {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+/* Reduced Motion Override CSS variables */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal-element {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .split-loader-panel {
+    display: none !important;
+  }
+  .draw-line-decor {
+    transform: none !important;
+    transition: none !important;
+  }
+  .masked-reveal-text {
+    transform: none !important;
+    transition: none !important;
+  }
+  .ken-burns-element {
+    transform: none !important;
+    transition: none !important;
+  }
+  .shimmer-trigger::after {
+    display: none !important;
+  }
+  .letter-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+

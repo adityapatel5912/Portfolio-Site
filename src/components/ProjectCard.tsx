@@ -1,106 +1,131 @@
-import { cn } from "@/lib/utils";
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import React, { useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
+import { Project } from "../types";
 
 interface ProjectCardProps {
-  number: string;
-  title: string;
-  description: string;
-  tags: string[];
-  className?: string;
-  delay?: number;
+  key?: string | number;
+  project: Project;
+  onSelect: (hash: string) => void;
 }
 
-export function ProjectCard({
-  number,
-  title,
-  description,
-  tags,
-  className,
-  delay = 0,
-}: ProjectCardProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+    // Respect user's system accessibility choices
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (!ref.current) return;
-    // disable on touch devices
-    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) return;
-
-    const rect = ref.current.getBoundingClientRect();
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     const width = rect.width;
     const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
+
+    // Center of card is origin
+    const xPct = (x / width) - 0.5; // range: -0.5 to +0.5
+    const yPct = (y / height) - 0.5; // range: -0.5 to +0.5
+
+    // Multiplier max 16deg gives rotation boundaries of -8deg to +8deg
+    const rotateY = xPct * 16;
+    const rotateX = -yPct * 16;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
   };
 
   const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
   };
 
   return (
-    <motion.div
-      ref={ref}
+    <div
+      ref={cardRef}
+      id={`project-card-${project.id}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ y: 50, opacity: 0, rotate: -1 }}
-      whileInView={{ y: 0, opacity: 1, rotate: 0 }}
-      viewport={{ once: true, margin: "-12%" }}
-      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: delay }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className={cn(
-        "group relative flex flex-col bg-bg-card border border-border-color p-8 cursor-pointer transition-all duration-400 ease-[0.16,1,0.3,1]",
-        "hover:-translate-y-2 hover:shadow-lg hover:border-gold hover:bg-bg-elevated cursor-hover-target",
-        className
-      )}
+      onClick={() => onSelect(`#/projects/${project.id}`)}
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border bg-bg-secondary p-1 backdrop-blur-md transition-all duration-300 hover:border-accent-warm hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+      style={{ transformStyle: "preserve-3d", transition: "transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s" }}
     >
-      <div className="flex flex-col h-full space-y-6 pointer-events-none" style={{ transform: "translateZ(30px)" }}>
-        <div className="text-text-faint font-mono text-xs tracking-widest">{number}</div>
+      <div className="relative flex flex-col h-full overflow-hidden rounded-xl bg-bg-primary p-6 sm:p-8">
         
-        <div className="space-y-4 flex-1">
-          <h3 className="font-display text-2xl md:text-3xl font-medium tracking-tight text-text-primary">
-            {title}
-          </h3>
-          <p className="font-body font-light text-sm md:text-base text-text-secondary leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500">
-            {description}
-          </p>
+        {/* Subtle radial inner glow on hover */}
+        <div 
+          className="absolute inset-x-0 inset-y-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent-warm/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+          style={{ pointerEvents: "none" }}
+        />
+
+        {/* Top Header Badge */}
+        <div className="relative z-10 flex items-center justify-between mb-8">
+          <div className="flex items-center space-x-2">
+            <span className="inline-flex h-2 w-2 rounded-full bg-accent-warm animate-pulse" />
+            <span className="font-mono text-[10px] uppercase tracking-widest text-[#8a8478]">
+              {project.category}
+            </span>
+          </div>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-bg-elevated text-text-secondary group-hover:text-text-primary group-hover:border-accent-warm group-hover:scale-105 transition duration-300">
+            <ArrowUpRight className="h-4 w-4" />
+          </div>
         </div>
 
-        <div className="flex items-center justify-between mt-auto pt-6">
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-mono bg-green-light/50 text-green-accent border border-green-light rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
+        {/* Visual Product Mockup Block incorporating Ken Burns scaling zoom */}
+        <div className="ken-burns-container relative flex items-center justify-center rounded-xl bg-bg-secondary min-h-[160px] sm:min-h-[190px] border border-border mb-6 px-4 overflow-hidden">
+          {/* Mockup visual with Ken Burns class */}
+          <div className="ken-burns-element absolute inset-0 bg-gradient-to-b from-bg-elevated to-bg-primary opacity-60" />
+          
+          {/* Tech background grid */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(232,228,220,0.015)_1px,_transparent_1px),_linear-gradient(90deg,_rgba(232,228,220,0.015)_1px,_transparent_1px)] bg-[size:16px_16px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
+
+          {/* Static high-contrast informative mockup contents */}
+          <div className="relative z-10 text-center select-none py-4">
+            <div className="inline-flex items-center space-x-1 border border-border bg-bg-elevated px-2.5 py-1 rounded-full text-[9px] font-mono text-accent-warm shadow-sm mb-3">
+              <Sparkles className="h-2.5 w-2.5" />
+              <span>{project.techStack[0]} // {project.techStack[1]}</span>
+            </div>
+            <p className="text-[11px] font-mono leading-relaxed text-[#8a8478] max-w-[240px] italic">
+              "{project.visualPrompt}"
+            </p>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="relative z-10 flex-grow flex flex-col justify-between">
+          <div>
+            <h3 className="font-display text-xl sm:text-2xl font-semibold tracking-tight text-text-primary group-hover:text-accent-warm transition duration-300 mb-2">
+              {project.title}
+            </h3>
+            <p className="font-sans text-xs sm:text-[13px] leading-relaxed text-text-secondary group-hover:text-text-primary transition duration-300 mb-6">
+              {project.tagline}
+            </p>
           </div>
 
-          <ArrowRight className="w-5 h-5 text-gold group-hover:translate-x-1.5 group-hover:scale-110 transition-transform duration-300 ease-[0.16,1,0.3,1]" />
+          <div>
+            {/* Tech Stack list */}
+            <div className="flex flex-wrap gap-1.5 mt-5">
+              {project.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="font-mono text-[9px] text-text-secondary bg-bg-elevated border border-border px-2 py-0.5 rounded-md"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
+
+        {/* 4b. Sliding Overlay panel: slides up from the bottom boundaries when hovered over */}
+        <div 
+          className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg-elevated to-transparent h-12 flex items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 pointer-events-none"
+        >
+          <span className="font-mono text-[10px] tracking-widest text-[#b8965a] uppercase">Explore Deep Specs →</span>
+        </div>
+
       </div>
-      
-      {/* Decorative gradient on hover */}
-      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-gold-dim/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-    </motion.div>
+    </div>
   );
 }

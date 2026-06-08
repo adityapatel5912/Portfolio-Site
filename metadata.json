@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "Aditya Patel Portfolio",
+  "description": "Founder-style product portfolio website for Aditya Patel, building AI-powered products and digital experiences.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
