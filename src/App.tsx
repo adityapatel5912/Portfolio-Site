@@ -134,6 +134,9 @@ export default function App() {
   useEffect(() => {
     const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     setIsTouchDevice(hasTouch);
+    if (!hasTouch) {
+      document.body.classList.add("hide-default-cursor");
+    }
   }, []);
 
   // Scroll down navigation shrink monitor
@@ -1211,7 +1214,7 @@ export default function App() {
                     <div className="relative pl-4 border-l border-border">
                       <div className="absolute w-2 h-2 rounded-full bg-accent-warm -left-[4.5px] top-1"></div>
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
-                        <h5 className="font-display text-base font-bold text-text-primary">JJK Simulator</h5>
+                        <h5 className="font-display text-base font-bold text-text-primary">Anime Simulator</h5>
                         <span className="font-mono text-[10px] text-text-secondary">Feb 2026 - Present</span>
                       </div>
                       <p className="text-xs text-accent-warm mb-3 uppercase tracking-tight">Lead Developer & Founder</p>

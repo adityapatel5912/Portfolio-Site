@@ -47,6 +47,10 @@
 }
 
 @layer base {
+  .hide-default-cursor, .hide-default-cursor * {
+    cursor: none !important;
+  }
+
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);

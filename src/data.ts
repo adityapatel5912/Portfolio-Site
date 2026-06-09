@@ -127,11 +127,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "jjk-simulator",
-    title: "JJK Simulator",
+    title: "Anime Simulator",
     category: "Gaming & AI",
     tagline: "An immersive text-based RPG simulator utilizing LLMs to generate dynamic Jujutsu Kaisen battles.",
     description: "A specialized conversational AI engine adapted into a fully interactive battle simulator, letting fans navigate the JJK universe.",
-    longDescription: "JJK Simulator applies precise prompt engineering and structured generation to maintain strict narrative constraints mapped to the Jujutsu Kaisen lore. Players simulate domain expansions, cursed energy reserves, and nuanced character dialogue in a real-time responsive environment.",
+    longDescription: "Anime Simulator applies precise prompt engineering and structured generation to maintain strict narrative constraints mapped to the Jujutsu Kaisen lore. Players simulate domain expansions, cursed energy reserves, and nuanced character dialogue in a real-time responsive environment.",
     url: "/projects/jjk-simulator",
     metrics: [
       { label: "Active Players", value: "3,500+" },
