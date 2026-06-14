@@ -21,7 +21,9 @@ import {
   ArrowUpRight,
   ArrowDown,
   Linkedin,
-  AtSign
+  AtSign,
+  Sun,
+  Moon
 } from "lucide-react";
 
 import { PROJECTS, SKILLS, TECH_STACK } from "./data";
@@ -90,6 +92,30 @@ export default function App() {
   const [isCopied, setIsCopied] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   
+  // Custom theme state
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        return savedTheme;
+      }
+    }
+    return "dark";
+  });
+
+  // Theme synchronization effect
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.classList.add("light");
+      root.setAttribute("data-theme", "light");
+    } else {
+      root.classList.remove("light");
+      root.removeAttribute("data-theme");
+    }
+    localStorage.setItem("portfolio-theme", theme);
+  }, [theme]);
+
   // Custom interactive state for the contact form
   const [senderName, setSenderName] = useState("");
   const [senderEmail, setSenderEmail] = useState("");
@@ -507,7 +533,17 @@ export default function App() {
           </nav>
 
           {/* Right Header Controls */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="flex h-8 w-8 items-center justify-center rounded-xl border border-border bg-bg-secondary text-text-secondary hover:text-text-primary hover:border-accent-warm transition duration-200 outline-none cursor-pointer"
+              aria-label="Toggle Theme"
+              title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {theme === "dark" ? <Sun className="h-4.5 w-4.5 text-accent-warm" /> : <Moon className="h-4.5 w-4.5 text-accent-warm" />}
+            </button>
+
             {/* Command Trigger Button */}
             <button
               onClick={() => setIsCommandMenuOpen(true)}
@@ -1040,7 +1076,7 @@ export default function App() {
                               placeholder="Alexis Patel"
                               value={senderName}
                               onChange={(e) => setSenderName(e.target.value)}
-                              className="w-full rounded-xl border border-border bg-bg-primary p-3 font-sans text-xs sm:text-sm text-text-primary outline-none focus:border-accent-warm transition text-[#e8e4dc]"
+                              className="w-full rounded-xl border border-border bg-bg-primary p-3 font-sans text-xs sm:text-sm text-text-primary outline-none focus:border-accent-warm transition"
                             />
                           </div>
                           <div>
@@ -1051,7 +1087,7 @@ export default function App() {
                               placeholder="alexis@brand.com"
                               value={senderEmail}
                               onChange={(e) => setSenderEmail(e.target.value)}
-                              className="w-full rounded-xl border border-border bg-bg-primary p-3 font-sans text-xs sm:text-sm text-text-primary outline-none focus:border-accent-warm transition text-[#e8e4dc]"
+                              className="w-full rounded-xl border border-border bg-bg-primary p-3 font-sans text-xs sm:text-sm text-text-primary outline-none focus:border-accent-warm transition"
                             />
                           </div>
                         </div>
@@ -1063,7 +1099,7 @@ export default function App() {
                             placeholder="Collaboration Inquiry - Product Specs"
                             value={senderSubject}
                             onChange={(e) => setSenderSubject(e.target.value)}
-                            className="w-full rounded-xl border border-border bg-bg-primary p-3 font-sans text-xs sm:text-sm text-text-primary outline-none focus:border-accent-warm transition text-[#e8e4dc]"
+                            className="w-full rounded-xl border border-border bg-bg-primary p-3 font-sans text-xs sm:text-sm text-text-primary outline-none focus:border-accent-warm transition"
                           />
                         </div>
 
@@ -1075,7 +1111,7 @@ export default function App() {
                             placeholder="Describe your project, timeline, constraints or product ambitions..."
                             value={senderMessage}
                             onChange={(e) => setSenderMessage(e.target.value)}
-                            className="w-full rounded-xl border border-border bg-bg-primary p-3 font-sans text-xs sm:text-sm text-text-primary outline-none focus:border-accent-warm transition resize-none text-[#e8e4dc]"
+                            className="w-full rounded-xl border border-border bg-bg-primary p-3 font-sans text-xs sm:text-sm text-text-primary outline-none focus:border-accent-warm transition resize-none"
                           />
                         </div>
 

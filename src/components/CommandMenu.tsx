@@ -181,10 +181,10 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="relative w-full max-w-lg overflow-hidden rounded-xl border border-luxury-border bg-black bg-opacity-95 text-slate-100 shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+            className="relative w-full max-w-lg overflow-hidden rounded-xl border border-border bg-bg-secondary text-text-primary shadow-[0_0_50px_rgba(0,0,0,0.4)]"
           >
             {/* Input wrap */}
-            <div className="flex items-center border-b border-luxury-border px-4 py-3">
+            <div className="flex items-center border-b border-border px-4 py-3">
               <Search className="mr-3 h-5 w-5 text-slate-500" />
               <input
                 ref={inputRef}
@@ -192,7 +192,7 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
                 placeholder="Search projects, skills, social links, actions..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full bg-transparent text-[15px] font-sans text-slate-100 outline-none placeholder:text-slate-500"
+                className="w-full bg-transparent text-[15px] font-sans text-text-primary outline-none placeholder:text-text-secondary"
               />
               <div className="hidden sm:flex items-center space-x-1 rounded bg-zinc-920 px-1.5 py-0.5 text-[10px] font-mono text-slate-500 border border-zinc-800">
                 <Command className="h-2.5 w-2.5" />
@@ -222,17 +222,17 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
                             <button
                               key={item.id}
                               onClick={item.action}
-                              className="w-full flex items-center justify-between rounded-lg px-3 py-2 text-left transition duration-150 hover:bg-zinc-900 focus:bg-zinc-900 group outline-none"
+                              className="w-full flex items-center justify-between rounded-lg px-3 py-2 text-left transition duration-150 hover:bg-bg-elevated focus:bg-bg-elevated group outline-none"
                             >
                               <div className="flex items-center space-x-3">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 text-slate-400 group-hover:text-slate-100 group-hover:border-zinc-700 transition">
+                                <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-bg-primary text-text-secondary group-hover:text-text-primary group-hover:border-accent-warm transition">
                                   <IconComponent className="h-4 w-4" />
                                 </div>
                                 <div className="space-y-0.5">
-                                  <div className="text-[14px] font-sans font-medium text-slate-200 group-hover:text-slate-100">
+                                  <div className="text-[14px] font-sans font-medium text-text-primary group-hover:text-text-primary">
                                     {item.title}
                                   </div>
-                                  <div className="text-[11px] font-sans text-slate-400 group-hover:text-slate-300">
+                                  <div className="text-[11px] font-sans text-text-secondary group-hover:text-text-primary">
                                     {item.subtitle}
                                   </div>
                                 </div>
@@ -248,7 +248,7 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between border-t border-luxury-border px-4 py-2.5 bg-zinc-950 text-[10px] font-mono text-slate-500">
+            <div className="flex items-center justify-between border-t border-border px-4 py-2.5 bg-bg-primary text-[10px] font-mono text-text-secondary">
               <span className="flex items-center">
                 Use <code className="mx-1 text-slate-400">↑↓</code> to browse, <code className="mx-1 text-slate-400">Enter</code> to select
               </span>
