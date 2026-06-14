@@ -490,7 +490,7 @@ export default function App() {
               buttonRef={(el) => { navRefs.current["about"] = el; }}
             />
             <InteractiveNavLink 
-              label="/ Products" 
+              label="/ Projects" 
               onClick={() => handleRouteNavigate("#projects")} 
               buttonRef={(el) => { navRefs.current["projects"] = el; }}
             />
@@ -544,13 +544,13 @@ export default function App() {
                 onClick={() => { handleRouteNavigate("#about"); setIsMobileMenuOpen(false); }}
                 className="block w-full text-left font-display text-lg font-medium text-text-secondary hover:text-text-primary"
               >
-                Founder Story
+                About
               </button>
               <button 
                 onClick={() => { handleRouteNavigate("#projects"); setIsMobileMenuOpen(false); }}
                 className="block w-full text-left font-display text-lg font-medium text-text-secondary hover:text-text-primary"
               >
-                Products
+                Top Projects
               </button>
               <button 
                 onClick={() => { handleRouteNavigate("#skills"); setIsMobileMenuOpen(false); }}
@@ -621,7 +621,7 @@ export default function App() {
                       animationDelay: "780ms"
                     }}
                   >
-                    Student Developer • Entrepreneur • Product Builder
+                    Software Engineer • Student Developer
                   </p>
 
                   <p 
@@ -632,7 +632,7 @@ export default function App() {
                       animationDelay: "900ms"
                     }}
                   >
-                    I create SaaS products, AI applications, and modern web experiences focused on innovation, automation, and great design.
+                    I build high-performance web applications, scalable backend systems, and responsive digital frameworks.
                   </p>
 
                   {/* Styled buttons */}
@@ -648,7 +648,7 @@ export default function App() {
                       onClick={() => handleRouteNavigate("#projects")}
                       className="shimmer-trigger group w-full sm:w-auto flex items-center justify-center space-x-2 rounded-xl bg-accent-warm hover:bg-[#c9a96e] text-bg-primary px-6 py-3 text-xs font-bold tracking-wide transition duration-200 cursor-pointer"
                     >
-                      <span className="text-bg-primary">Inspect Products</span>
+                      <span className="text-bg-primary">Explore Projects</span>
                       <ArrowRight className="h-3.5 w-3.5 transform group-hover:translate-x-0.5 transition-transform text-bg-primary" />
                     </button>
                     
@@ -715,7 +715,7 @@ export default function App() {
                         </div>
                         <div className="flex justify-between items-center text-xs">
                           <span className="text-text-secondary font-mono">Core Focus</span>
-                          <span className="text-text-primary font-sans">Automation, AI & Custom Web Apps</span>
+                          <span className="text-text-primary font-sans">Full-Stack Systems & Web Core</span>
                         </div>
                       </div>
                     </div>
@@ -723,22 +723,22 @@ export default function App() {
                     {/* Personal Narrative */}
                     <div className="lg:col-span-7 space-y-6 text-text-secondary font-sans leading-relaxed text-sm sm:text-base font-light stagger-child">
                       <p className="text-lg font-sans text-text-primary font-medium">
-                        I'm Aditya Patel, a student developer and entrepreneur passionate about building AI-powered products, SaaS applications, and modern digital experiences.
+                        I'm Aditya Patel, a student developer and software engineer focused on designing robust backend infrastructures, clean API design patterns, and responsive user interfaces.
                       </p>
                       
                       <p>
-                        My interests span artificial intelligence, automation, startups, web development, and product design. I enjoy turning ideas into real products and exploring how technology can solve meaningful problems.
+                        My interests sit at the intersection of modern system languages, RESTful microservices, and client-centric application development. I focus on structural integrity, clean code abstractions, and elegant performance optimizations.
                       </p>
                       
                       <p>
-                        Currently, I'm focused on creating innovative projects, experimenting with AI, and building products that combine functionality, design, and automation. I value clean engineering pipelines, high checkout latency parameters, and custom web graphics interfaces.
+                        Currently, I'm refining my competencies across Python, Java, and C/C++ while architecting clean cloud environments and relational database structures. I value performant clean code pipelines, robust API routing, and scalable full-stack applications.
                       </p>
                       
                       {/* Linear styled specs banner */}
                       <div className="pt-4 flex flex-wrap gap-4 items-center font-mono text-[11px] text-text-secondary">
-                        <span className="flex items-center"><Check className="mr-1 h-3.5 w-3.5 text-accent-warm" /> Active Coding Session</span>
-                        <span className="flex items-center"><Check className="mr-1 h-3.5 w-3.5 text-accent-warm" /> Web3 & AI Adaptation</span>
-                        <span className="flex items-center"><Check className="mr-1 h-3.5 w-3.5 text-accent-warm" /> D2C Optimization</span>
+                        <span className="flex items-center"><Check className="mr-1 h-3.5 w-3.5 text-accent-warm" /> High-Performance APIs</span>
+                        <span className="flex items-center"><Check className="mr-1 h-3.5 w-3.5 text-accent-warm" /> Relational Data Modeling</span>
+                        <span className="flex items-center"><Check className="mr-1 h-3.5 w-3.5 text-accent-warm" /> Pre-Flight Automated DevOps</span>
                       </div>
                     </div>
 
@@ -757,18 +757,18 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 sm:mb-16">
                   <div className="stagger-child">
                     <div className="font-mono text-[10px] uppercase tracking-widest text-[#a1a1b3] mb-2">
-                      // COMPLETE PRODUCT PORTFOLIO
+                      // DEVELOPED PROJECTS & INITIATIVES
                     </div>
                     
                     {/* 6b. Block headings masked reveal */}
                     <div className="masked-reveal-box">
                       <h2 className="masked-reveal-text font-display text-3xl sm:text-5xl font-black text-text-primary tracking-tight uppercase">
-                        Featured Products
+                        Top Projects
                       </h2>
                     </div>
                   </div>
                   <p className="font-sans text-xs sm:text-sm text-text-secondary max-w-md mt-4 sm:mt-0 leading-relaxed font-light stagger-child">
-                    Every card is a fully clickable case-study showing real metrics, dynamic custom interface visual previews, and detailed developer timelines.
+                    Each card represents a completed project showcasing actual performance metrics, software architectural plans, and engineering timelines.
                   </p>
                 </div>
 
@@ -872,17 +872,17 @@ export default function App() {
                     {/* 6b. Block headings masked reveal */}
                     <div className="masked-reveal-box">
                       <h2 className="masked-reveal-text font-display text-3xl sm:text-4.5xl font-black text-text-primary uppercase tracking-tight">
-                        Tech Stack Config
+                        Tech Stack & Tooling
                       </h2>
                     </div>
                     <p className="font-sans text-sm text-text-secondary leading-relaxed font-light">
-                      My selected operating libraries and tools. I optimize each project's package schema to guarantee instantaneous initial render scores and type-safe backend integrations.
+                      My selected software competencies and tools. I optimize each project to guarantee high initial render scores and type-safe backend integrations.
                     </p>
                     
                     <div className="p-5 rounded-2xl bg-bg-secondary border border-border hidden sm:block">
                       <div className="flex items-center space-x-2 text-xs font-mono text-text-secondary">
-                        <span className="h-1.5 w-1.5 rounded-full bg-accent-warm animate-ping" />
-                        <span>ALL PACKAGES PINNED AND RESOLVED IN WORKSPACE</span>
+                        <span className="h-1.5 w-1.5 rounded-full bg-accent-warm" />
+                        <span>VERIFIED COMPATIBILITY OVER MODERN RUNTIMES</span>
                       </div>
                     </div>
                   </div>
@@ -1199,10 +1199,10 @@ export default function App() {
                 <div className="space-y-4">
                   <div className="border-b border-border pb-4">
                     <h1 className="font-display text-3xl font-bold text-text-primary uppercase tracking-tight">Aditya Patel</h1>
-                    <p className="font-mono text-sm text-accent-warm mt-1">Student Developer, Founder & Product Architect</p>
+                    <p className="font-mono text-sm text-accent-warm mt-1">Student Developer & Software Engineer</p>
                   </div>
                   <p className="font-sans text-sm text-text-secondary leading-relaxed max-w-2xl font-light">
-                    Entrepreneurial and detail-oriented technical founder specializing in artificial intelligence, automation, and full-stack SaaS product development. Passionate about transforming complex ideas into viable, beautiful consumer products with flawless design systems.
+                    Analytical and detail-oriented systems programmer and full-stack software engineer specializing in web application development, server-side APIs, and high-performance databases. Passionate about engineering clean, robust code architecture, safe models, and fluid user interfaces.
                   </p>
                 </div>
 

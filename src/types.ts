@@ -6,6 +6,7 @@ export interface Project {
   description: string;
   longDescription: string;
   url: string;
+  liveUrl?: string;
   metrics: { label: string; value: string }[];
   techStack: string[];
   features: string[];

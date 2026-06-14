@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Search, Command, ArrowRight, Sparkles, Folder, ExternalLink, Mail, Github, Instagram, FileText } from "lucide-react";
+import { Search, Command, ArrowRight, Sparkles, Folder, ExternalLink, Mail, Github, Instagram, FileText, Linkedin, AtSign } from "lucide-react";
 import { PROJECTS } from "../data";
 
 interface CommandMenuProps {
@@ -36,7 +36,7 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
       id: `project-${p.id}`,
       title: p.title,
       subtitle: p.category,
-      category: "Products",
+      category: "Projects",
       action: () => {
         onNavigate(`#/projects/${p.id}`);
         onClose();
@@ -46,7 +46,7 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
     {
       id: "nav-projects",
       title: "View All Projects",
-      subtitle: "Jump to the product-market catalog",
+      subtitle: "Jump to the selected projects catalog",
       category: "Navigation",
       action: () => {
         onNavigate("#projects");
@@ -57,7 +57,7 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
     {
       id: "nav-skills",
       title: "Explore Core Competencies",
-      subtitle: "AI, Python, Automation & SaaS",
+      subtitle: "Python, Java, React, SQL & FastAPI",
       category: "Navigation",
       action: () => {
         onNavigate("#skills");
@@ -78,8 +78,8 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
     },
     {
       id: "nav-about",
-      title: "Read Founder Story",
-      subtitle: "Aditya's experiences & product vision",
+      title: "Read Biography",
+      subtitle: "Aditya's experiences & technical vision",
       category: "Navigation",
       action: () => {
         onNavigate("#about");
@@ -121,6 +121,17 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
       icon: Github
     },
     {
+      id: "action-linkedin",
+      title: "Connect on LinkedIn",
+      subtitle: "linkedin.com/in/adityapatel5912",
+      category: "Links",
+      action: () => {
+        window.open("https://www.linkedin.com/in/adityapatel5912/", "_blank");
+        onClose();
+      },
+      icon: Linkedin
+    },
+    {
       id: "action-instagram",
       title: "Follow Instagram",
       subtitle: "@_aditya_patel__9",
@@ -130,6 +141,17 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
         onClose();
       },
       icon: Instagram
+    },
+    {
+      id: "action-threads",
+      title: "Follow on Threads",
+      subtitle: "@_aditya_patel__9_",
+      category: "Links",
+      action: () => {
+        window.open("https://www.threads.net/@_aditya_patel__9_", "_blank");
+        onClose();
+      },
+      icon: AtSign
     }
   ];
 
@@ -167,7 +189,7 @@ export default function CommandMenu({ isOpen, onClose, onNavigate }: CommandMenu
               <input
                 ref={inputRef}
                 type="text"
-                placeholder="Search products, skills, social links, actions..."
+                placeholder="Search projects, skills, social links, actions..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 className="w-full bg-transparent text-[15px] font-sans text-slate-100 outline-none placeholder:text-slate-500"

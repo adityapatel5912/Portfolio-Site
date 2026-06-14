@@ -34,6 +34,7 @@ export const PROJECTS: Project[] = [
     description: "A visually striking, highly optimized e-commerce system built for premium brands, setting new benchmarks in fluid interaction design and swift checkout latency.",
     longDescription: "Engineered to deliver Apple-grade luxury catalog inspection, the One8 experience breaks away from standard grid-based templates. Combining physics-based cursor scroll interactions, high-definition asset optimization, and a single-hop serverless checkout pipeline, the platform is crafted to maximize user session length and boost conversion metrics.",
     url: "/projects/one8",
+    liveUrl: "https://one8-website-alpha.vercel.app/",
     metrics: [
       { label: "Initial load time", value: "0.24s" },
       { label: "Lighthouse mobile score", value: "99" },
@@ -128,10 +129,10 @@ export const PROJECTS: Project[] = [
   {
     id: "jjk-simulator",
     title: "Anime Simulator",
-    category: "Gaming & AI",
-    tagline: "An immersive text-based RPG simulator utilizing LLMs to generate dynamic Jujutsu Kaisen battles.",
-    description: "A specialized conversational AI engine adapted into a fully interactive battle simulator, letting fans navigate the JJK universe.",
-    longDescription: "Anime Simulator applies precise prompt engineering and structured generation to maintain strict narrative constraints mapped to the Jujutsu Kaisen lore. Players simulate domain expansions, cursed energy reserves, and nuanced character dialogue in a real-time responsive environment.",
+    category: "AI & Interactive Simulations",
+    tagline: "An immersive, state-driven RPG narrative sandbox utilizing large language models to construct dynamic game sessions.",
+    description: "A specialized high-fidelity conversational agent framework adapted into an interactive, real-time narrative simulation engine.",
+    longDescription: "Anime Simulator compiles state-of-the-art language modeling to generate real-time combat scripts, domain-constrained combat mechanics, and character-authentic dialogue dynamically. Designed with precise prompt isolation protocols and robust localized state trees, it delivers fluid state-based interactions to maintain structural cohesion with modern generative systems.",
     url: "/projects/jjk-simulator",
     metrics: [
       { label: "Active Players", value: "3,500+" },
@@ -140,9 +141,9 @@ export const PROJECTS: Project[] = [
     ],
     techStack: ["React", "TypeScript", "Tailwind CSS", "Gemini AI", "Supabase"],
     features: [
-      "Dynamic battle generation logic adapting to player choices",
-      "Real-time cursed energy resource management system",
-      "Character-accurate conversational profiles powered by LLMs"
+      "Dynamic state-machine narrative generation adapting continuously to user-driven choices",
+      "High-frequency parameter logic tracking resource changes in real-time",
+      "Character-accurate voice and dialogue modeling built using structured context windows of state-of-the-art LLMs"
     ],
     visualPrompt: "A sleek gaming terminal interface featuring dark mystical purple accents, intense battle graphics, and flowing cursed energy particles.",
     mockupBg: "from-fuchsia-950/40 via-slate-900 to-black border-fuchsia-500/20",
@@ -153,57 +154,53 @@ export const PROJECTS: Project[] = [
 
 export const SKILLS: Skill[] = [
   {
-    name: "AI Development",
-    description: "Architecting server-side model triggers, optimizing multi-turn agent systems, and implementing high-dimensional vector embedding semantics.",
-    icon: "Sparkles",
+    name: "Python, FastAPI & Systems Programming",
+    description: "Developing robust server-side algorithms, microservice data pipelines, and high-performance system backends using Python, Java, and C/C++.",
+    icon: "SquareTerminal",
     level: 95
   },
   {
-    name: "Python",
-    description: "Automated data workflows, structural analysis libraries (pandas, numpy), and microservices built with FastAPI & Flask.",
-    icon: "SquareTerminal",
-    level: 90
-  },
-  {
-    name: "Web Development",
-    description: "Building light-weight React SPAs and Next.js products utilizing robust client state, tailwind structures, and seamless interaction hooks.",
+    name: "React, Next.js & Frontend Core",
+    description: "Architecting interactive user interfaces with React, state management solutions, Next.js page models and fluid layouts styled with Tailwind CSS.",
     icon: "Globe",
     level: 98
   },
   {
-    name: "Automation",
-    description: "Developing robust cloud sync routines, cron pipelines, web scraping engines, and customized tool-chains to boost system operations.",
+    name: "TypeScript & Hardened Security",
+    description: "Securing runtime execution paths with strict static modeling, compiler configurations, and high-end validation patterns.",
     icon: "Cpu",
-    level: 88
+    level: 96
   },
   {
-    name: "SaaS Development",
-    description: "Creating complete, modular user access frameworks, relational data schemas, and clean subscription models optimized for modern startups.",
+    name: "Databases, SQL & Real-Time Sync",
+    description: "Constructing safe database designs, PostgreSQL queries, and integrating serverless Supabase setups with responsive cloud structures.",
     icon: "Layers",
     level: 92
   },
   {
-    name: "Product Design",
-    description: "Crafting digital assets, custom component hierarchies, typography balances, and precise micro-interactions to deliver Stripe-grade polish.",
-    icon: "Compass",
+    name: "API Engineering & Backends",
+    description: "Building production RESTful services, middleware verification routines, custom routers, and webhooks in Node.js, Express, and FastAPI.",
+    icon: "Sparkles",
     level: 94
   },
   {
-    name: "AI-Accelerated Development",
-    description: "Leveraging advanced foundational LLMs with lightning-fast execution pipelines to construct proof-of-concepts and iterate prototypes within hours.",
-    icon: "Zap",
-    level: 100
+    name: "Deployment & Production Strategy",
+    description: "Automating pre-flight verification guidelines, env configurations, bundle size optimizations, and final cloud platform integrations.",
+    icon: "Compass",
+    level: 90
   }
 ];
 
 export const TECH_STACK = [
-  { name: "Python", category: "Backend & ML" },
-  { name: "React", category: "Frontend Core" },
-  { name: "Next.js", category: "Framework" },
-  { name: "TypeScript", category: "Type-safety" },
-  { name: "Tailwind CSS", category: "Design System" },
-  { name: "Supabase", category: "Database & Auth" },
-  { name: "Gemini AI", category: "AI Models" },
-  { name: "GitHub", category: "Version Control" },
-  { name: "Vercel", category: "Deployment" }
+  { name: "Python", category: "Data, Automation & AI" },
+  { name: "Java", category: "Enterprise Programming" },
+  { name: "C / C++", category: "Systems Engineering" },
+  { name: "React", category: "Frontend Engine" },
+  { name: "Next.js", category: "Full-Stack Framework" },
+  { name: "TypeScript", category: "Strict Typing Security" },
+  { name: "Tailwind CSS", category: "Responsive Layouts" },
+  { name: "Database / SQL / Supabase", category: "Relational Models" },
+  { name: "API & Backend Services", category: "System Middleware" },
+  { name: "FastAPI", category: "High-Performance Endpoints" },
+  { name: "Cloud Deployment", category: "Pre-flight Ops & Delivery" }
 ];

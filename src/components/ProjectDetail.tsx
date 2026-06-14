@@ -40,10 +40,21 @@ export default function ProjectDetail({ project, onBack, onNavigate }: ProjectDe
           className="group flex items-center space-x-2 text-sm font-sans text-zinc-400 hover:text-white transition duration-200 outline-none w-fit"
         >
           <ArrowLeft className="h-4 w-4 transform group-hover:-translate-x-1 transition-transform" />
-          <span>Back to Product Catalog</span>
+          <span>Back to Top Projects</span>
         </button>
 
         <div className="flex items-center space-x-3">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1.5 rounded-lg border border-accent-warm bg-accent-warm/10 px-3 py-1.5 text-xs font-sans text-accent-warm hover:bg-accent-warm hover:text-bg-primary transition duration-200"
+            >
+              <span>Visit Live Website</span>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          )}
           <button
             onClick={handleShare}
             className="flex items-center space-x-1.5 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-xs font-sans text-zinc-400 hover:text-white hover:border-zinc-700 transition"
@@ -128,16 +139,28 @@ export default function ProjectDetail({ project, onBack, onNavigate }: ProjectDe
           </div>
           <div>
             <h5 className="font-sans text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">URL Reference</h5>
-            <div className="text-sm font-mono text-zinc-400 hover:text-white transition">
-              {project.url}
-            </div>
+            {project.liveUrl ? (
+              <a 
+                href={project.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-sm font-mono text-accent-warm hover:underline inline-flex items-center gap-1"
+              >
+                <span>Live Site</span>
+                <ExternalLink className="h-3 w-3 text-accent-warm" />
+              </a>
+            ) : (
+              <div className="text-sm font-mono text-zinc-400">
+                {project.url}
+              </div>
+            )}
           </div>
         </div>
 
         {/* Long Description and Narrative */}
         <div className="md:col-span-3 space-y-6">
           <h4 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
-            The Product Vision
+            The Project Architecture
           </h4>
           <p className="font-sans text-[15px] sm:text-[16px] leading-relaxed text-zinc-300 font-light text-justify">
             {project.longDescription}
@@ -210,7 +233,7 @@ export default function ProjectDetail({ project, onBack, onNavigate }: ProjectDe
             }}
             className="group flex items-center space-x-1.5 rounded-xl bg-zinc-100 px-4 py-2.5 text-xs font-sans font-semibold text-black hover:bg-white transition duration-200 outline-none cursor-pointer"
           >
-            <span>Next Product Case Study</span>
+            <span>Next Project Case Study</span>
             <ChevronRight className="h-3.5 w-3.5 transform group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
